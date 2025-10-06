@@ -23,15 +23,13 @@
 
 <body>
 <script>
-    // Mobil aniqlash funksiyasi
     function isMobile() {
       const ua = navigator.userAgent || navigator.vendor || window.opera;
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi/i.test(ua);
     }
 
-    // Agar mobil bo‘lsa — saytni to‘liq bloklaymiz
     if (isMobile()) {
-      document.body.innerHTML = ''; // barcha kontentni tozalaydi
+      document.body.innerHTML = ''; 
       const blocker = document.createElement('div');
       blocker.id = 'mobile-blocker';
       blocker.innerHTML = '<h1>❌ Bu sayt faqat kompyuterlar uchun mo‘ljallangan</h1>';
@@ -70,11 +68,7 @@
   </div>
 
  <section id="home" class="home-screen">
-  <!-- bungaham dizayn ber  -->
-<!-- login password togri bolsagina ishlasin boshlash tugmasi -->
-<!-- input login uchun -->
 <input type="text" id="username" placeholder="Username" style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); padding: 10px; font-size: 1rem; border-radius: 5px; border: 1px solid #ccc;">
-<!-- input password uchun -->
 <input type="password" id="password" placeholder="Password" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 10px; font-size: 1rem; border-radius: 5px; border: 1px solid #ccc;">
 <button id="goBtn">Boshlash</button>
 <script>
@@ -82,7 +76,6 @@
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    // Faqat misol uchun, haqiqiy loyihalarda bu ma'lumotlarni serverda tekshirish kerak
     if(username === 'muslima' && password === 'muslima') {
       document.getElementById('home').classList.add('hidden');
       document.getElementById('index').classList.remove('hidden');
@@ -262,7 +255,9 @@ body{
         </div>
       </section> 
 <section id="datas3" >
-
+<h1 style="font-family: 'Anton', sans-serif; font-size: 4rem; color: white; text-align: center; margin-top: 220vh;">
+  Happy Birthday Be the best be the greatest
+</h1>
 </section>
 
     </section>
