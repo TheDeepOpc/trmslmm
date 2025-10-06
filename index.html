@@ -22,93 +22,53 @@
 </head>
 
 <body>
-    <div id="unsupported-overlay" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="box">
-      <h1>Kechirasiz</h1>
-      <p>Ushbu sayt faqat mobil qurilmalar uchun moʻljallangan.<br>
-         Sizning qurilmangiz qoʻllab-quvvatlanmaydi.</p>
-      <button id="continue-btn">Shunga qaramay davom etish</button>
-    </div>
+<script>
+    // Mobil aniqlash funksiyasi
+    function isMobile() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi/i.test(ua);
+    }
+
+    // Agar mobil bo‘lsa — saytni to‘liq bloklaymiz
+    if (isMobile()) {
+      document.body.innerHTML = ''; // barcha kontentni tozalaydi
+      const blocker = document.createElement('div');
+      blocker.id = 'mobile-blocker';
+      blocker.innerHTML = '<h1>❌ Bu sayt faqat kompyuterlar uchun mo‘ljallangan</h1>';
+      document.body.appendChild(blocker);
+      blocker.style.display = 'flex';
+    }
+</script>
+<style>
+    #mobile-blocker {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: black;
+      color: white;
+      z-index: 999999;
+      font-family: Arial, sans-serif;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #mobile-blocker h1 {
+      font-size: 24px;
+      margin: 0;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+</style>
+<div id="mobile-blocker">
+    <h1>❌ Bu sayt faqat kompyuterlar uchun mo‘ljallangan</h1>
   </div>
 
-<script>
-    (function() {
-      // Mobil aniqlash funksiyasi (oddiy va keng tarqalgan)
-      function isMobile() {
-        // userAgent asosida aniqlash
-        const ua = navigator.userAgent || navigator.vendor || window.opera;
-        const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi/i;
-        if(mobileRegex.test(ua)) return true;
-
-        // qo'lda sensorli ekranlar uchun qo'shimcha tekshiruv (ba'zi desktoplar ham sensor bo'lishi mumkin)
-        if (navigator.maxTouchPoints && navigator.maxTouchPoints > 1) return true;
-
-        // kichik ekran o'lchami (oxirgi chora)
-        if (window.matchMedia && window.matchMedia("(max-width: 768px)").matches) return true;
-
-        return false;
-      }
-
-      const overlay = document.getElementById('unsupported-overlay');
-      const continueBtn = document.getElementById('continue-btn');
-
-      // Agar mobil bo'lsa — hech narsa qilmaymiz; aks holda overlay ko'rsatiladi
-      if (!isMobile()) {
-        overlay.style.display = 'flex';
-        overlay.setAttribute('aria-hidden', 'false');
-
-        // agar foydalanuvchi "Shunga qaramay davom etish" ni bossа, overlay yo'q qilinsin (iste'molchiga imkon berish uchun)
-        continueBtn.addEventListener('click', function() {
-          overlay.style.display = 'none';
-          overlay.setAttribute('aria-hidden', 'true');
-        });
-
-        // optional: klaviaturadan ESC bilan ham yoping
-        document.addEventListener('keydown', function(e){
-          if(e.key === 'Escape') {
-            overlay.style.display = 'none';
-            overlay.setAttribute('aria-hidden', 'true');
-          }
-        }, {once:false});
-      }
-    })();
-
-  
-</script>
-  
-  <style>
-     #unsupported-overlay{
-      display:none;
-      position:fixed;
-      inset:0;
-      background: rgba(0,0,0,0.75);
-      color:#fff;
-      z-index:9999;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      padding:20px;
-      font-family: Arial, sans-serif;
-    }
-    #unsupported-overlay .box{
-      max-width:720px;
-      border-radius:12px;
-      padding:28px;
-      background: rgba(0,0,0,0.45);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-    #unsupported-overlay h1{ margin:0 0 12px; font-size:22px; }
-    #unsupported-overlay p{ margin:0 0 18px; line-height:1.4; }
-    #unsupported-overlay button{
-      padding:10px 18px;
-      border-radius:8px;
-      border: none;
-      background:#fff;
-      color:#111;
-      cursor:pointer;
-      font-weight:600;
-    }
-  </style>
  <section id="home" class="home-screen">
   <!-- bungaham dizayn ber  -->
 <!-- login password togri bolsagina ishlasin boshlash tugmasi -->
