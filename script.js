@@ -72,3 +72,19 @@ function ultraSmoothScrollTo(selector, duration = 2000) {
 
   requestAnimationFrame(animation);
 }
+
+
+
+  document.getElementById('goBtn').addEventListener('click', function() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if(username === 'muslima' && password === 'muslima') {
+      document.getElementById('home').classList.add('hidden');
+      document.getElementById('index').classList.remove('hidden');
+      document.getElementById('bgAudio').play();
+    } else {
+      alert('Noto\'g\'ri login yoki parol!');
+      location.reload();
+    } 
+  });
